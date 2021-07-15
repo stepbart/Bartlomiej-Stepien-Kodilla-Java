@@ -9,3 +9,9 @@ public class Calculator {
         return a-b;
     }
 }
+
+class Try {
+    public static void main(String[] args) {
+        System.out.println("życie");
+    }
+}
