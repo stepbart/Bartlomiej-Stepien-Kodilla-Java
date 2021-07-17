@@ -50,4 +50,14 @@ public final class ForumUser {
                 ", ur." + birthDate +
                 "), liczba postów: " + numberOfPosts;
     }
+
+    public static boolean isOlderThan20(LocalDate localDate){
+        LocalDate date20yearsAgo = LocalDate.of(LocalDate.now().getYear() - 20, LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth() + 1);
+        if (localDate.isBefore(date20yearsAgo)){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }
