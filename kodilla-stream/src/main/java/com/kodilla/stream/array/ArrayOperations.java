@@ -15,10 +15,10 @@ public interface ArrayOperations {
             return numbers[0];
         }
 
-        System.out.println("Liczby w tablicy:");
+        System.out.print("Liczby w tablicy:");
         IntStream.range(0, numbers.length)
                 .map(n -> numbers[n]).boxed()
-                .map(n -> "[" + Integer.toString(n) + "]")
+                .map(n -> "[" + n + "]")
                 .forEach(System.out::print);
 
         double average = IntStream.range(0, numbers.length)
