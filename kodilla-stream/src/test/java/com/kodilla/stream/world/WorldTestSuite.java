@@ -1,9 +1,9 @@
 package com.kodilla.stream.world;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WorldTestSuite {
 
@@ -63,9 +63,13 @@ public class WorldTestSuite {
 
         //When
         BigDecimal totalPopulation = world.getPeopleQuantity(world);
+        long numberOfCountries = world.getContinents().stream()
+                .flatMap(continent -> continent.getCountries().stream())
+                .count();
 
         //Then
         BigDecimal expectedValue = new BigDecimal("5338194254");
-        Assertions.assertEquals(expectedValue, totalPopulation);
+        assertEquals(expectedValue, totalPopulation);
+        assertEquals(28, numberOfCountries);
     }
 }
