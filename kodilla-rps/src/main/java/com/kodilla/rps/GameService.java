@@ -1,29 +1,23 @@
 package com.kodilla.rps;
 
-public interface RpsPlay {
+import static com.kodilla.rps.Constants.*;
 
-    static void printInstructions() {
-        System.out.println("Aby rozegrać rundę w grze Kamień-Papier-Nożyce, należy wybrać jedną z figur:");
-        System.out.println("Kamień (wybór klawiszem \"1\")");
-        System.out.println("Papier (wybór klawiszem \"2\")");
-        System.out.println("Nożyce (wybór klawiszem \"3\")");
-        System.out.println("Aby zakończyć grę, wciśnij: \"x\".");
-        System.out.println("Aby zacząć od początku, wciśnij: \"n\".");
-    }
+public class GameService {
 
-    static void nextRound(RpsPlayer player, RpsPlayer comp, int number) throws InterruptedException {
+
+
+    static void nextRound(HumanPlayer player, ComputerPlayer comp, int number) throws InterruptedException {
 
         player.nextMove(number - 1);
         System.out.println("Wybrałeś: " + player.getLastPawn());
         System.out.println("Teraz ruch komputera.");
         Thread.sleep(1000);
-        comp.nextMove(RpsPlayer.rpsComputerMove());
+        comp.nextMove();
         System.out.println("Komputer wybrał: " + comp.getLastPawn());
         whoIsWinnerofTheRound(player, comp);
-        System.out.println("(Kamień - 1, Papier - 2, Nożyce - 3)");
     }
 
-    static void whoIsWinnerofTheRound(RpsPlayer player, RpsPlayer comp) {
+    static void whoIsWinnerofTheRound(Player player, Player comp) {
         String playerPawn = player.getLastPawn();
         String compPawn = comp.getLastPawn();
 
@@ -31,40 +25,40 @@ public interface RpsPlay {
             System.out.println("Jest remis!");
         }
 
-        if (playerPawn.equals("Kamień")) {
-            if (compPawn.equals("Papier")) {
+        if (playerPawn.equals(KAMIEN)) {
+            if (compPawn.equals(PAPIER)) {
                 showWhoWinsAndAddPoint(comp);
             }
-            if (compPawn.equals("Nożyce")) {
+            if (compPawn.equals(NOZYCE)) {
                 showWhoWinsAndAddPoint(player);
             }
         }
 
-        if (playerPawn.equals("Papier")) {
-            if (compPawn.equals("Kamień")) {
+        if (playerPawn.equals(PAPIER)) {
+            if (compPawn.equals(KAMIEN)) {
                 showWhoWinsAndAddPoint(player);
             }
-            if (compPawn.equals("Nożyce")) {
+            if (compPawn.equals(NOZYCE)) {
                 showWhoWinsAndAddPoint(comp);
             }
         }
 
-        if (playerPawn.equals("Nożyce")) {
-            if (compPawn.equals("Papier")) {
+        if (playerPawn.equals(NOZYCE)) {
+            if (compPawn.equals(PAPIER)) {
                 showWhoWinsAndAddPoint(player);
             }
-            if (compPawn.equals("Kamień")) {
+            if (compPawn.equals(KAMIEN)) {
                 showWhoWinsAndAddPoint(comp);
             }
         }
     }
 
-    static void showWhoWinsAndAddPoint(RpsPlayer player) {
+    static void showWhoWinsAndAddPoint(Player player) {
         System.out.println(player.getName() + " wygrał tę rundę!");
         player.setRoundsWins();
     }
 
-    static void whoWhins(RpsPlayer player, RpsPlayer comp) {
+    static void whoWhins(Player player, Player comp) {
 
         System.out.println(player.getName() + " vs " + comp.getName());
         System.out.println(player.getRoundsWins() + " : " + comp.getRoundsWins());
@@ -80,7 +74,7 @@ public interface RpsPlay {
         }
     }
 
-    static boolean isWinner(RpsPlayer player, RpsPlayer comp, int numberOfRounds) {
+    static boolean isWinner(Player player, Player comp, int numberOfRounds) {
         if (numberOfRounds == player.getRoundsWins() || numberOfRounds == comp.getRoundsWins()) {
             return true;
         } else {

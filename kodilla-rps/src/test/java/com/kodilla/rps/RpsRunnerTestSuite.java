@@ -1,7 +1,7 @@
 package com.kodilla.rps;
 
-import static com.kodilla.rps.RpsPlay.isWinner;
-import static com.kodilla.rps.RpsPlay.whoWhins;
+import static com.kodilla.rps.GameService.isWinner;
+import static com.kodilla.rps.GameService.whoWhins;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -11,10 +11,10 @@ public class RpsRunnerTestSuite {
     @Test
     void testingOfSettingPawnNames(){
         //Given
-        RpsPlayer player = new RpsPlayer("playerTest");
-        RpsPawn pawn1 = new RpsPawn();
-        RpsPawn pawn2 = new RpsPawn();
-        RpsPawn pawn3 = new RpsPawn();
+        HumanPlayer player = new HumanPlayer("playerTest");
+        GamePawn pawn1 = new GamePawn();
+        GamePawn pawn2 = new GamePawn();
+        GamePawn pawn3 = new GamePawn();
 
         //When
         pawn1.setName(0);
@@ -30,9 +30,9 @@ public class RpsRunnerTestSuite {
     @Test
     void testingOfGettingLastPawnName(){
         //Given
-        RpsPlayer player1 = new RpsPlayer("playerTest1");
-        RpsPlayer player2 = new RpsPlayer("playerTest2");
-        RpsPlayer player3 = new RpsPlayer("playerTest3");
+        HumanPlayer player1 = new HumanPlayer("playerTest1");
+        HumanPlayer player2 = new HumanPlayer("playerTest2");
+        HumanPlayer player3 = new HumanPlayer("playerTest3");
 
         //When
         player1.nextMove(0);
@@ -48,10 +48,10 @@ public class RpsRunnerTestSuite {
     @Test
     void countinWinningRounds(){
         //Given
-        RpsPlayer player1 = new RpsPlayer("playerTest1");
-        RpsPlayer player2 = new RpsPlayer("playerTest2");
-        RpsPlayer player3 = new RpsPlayer("playerTest3");
-        RpsPlayer player4 = new RpsPlayer("playerTest4");
+        HumanPlayer player1 = new HumanPlayer("playerTest1");
+        HumanPlayer player2 = new HumanPlayer("playerTest2");
+        HumanPlayer player3 = new HumanPlayer("playerTest3");
+        HumanPlayer player4 = new HumanPlayer("playerTest4");
 
         //When
         player1.setRoundsWins();
@@ -74,8 +74,8 @@ public class RpsRunnerTestSuite {
     @Test
     void testIsWinner(){
         //Given
-        RpsPlayer player1 = new RpsPlayer("playerTest1");
-        RpsPlayer player2 = new RpsPlayer("playerTest2");
+        HumanPlayer player1 = new HumanPlayer("playerTest1");
+        HumanPlayer player2 = new HumanPlayer("playerTest2");
         player1.setRoundsWins();
         player2.setRoundsWins();
         player2.setRoundsWins();
@@ -94,10 +94,10 @@ public class RpsRunnerTestSuite {
     @Test
     void testWhoWhins(){
         //Given
-        RpsPlayer player1 = new RpsPlayer("playerTest1");
+        HumanPlayer player1 = new HumanPlayer("playerTest1");
         player1.setRoundsWins();
         player1.setRoundsWins();
-        RpsPlayer player2 = new RpsPlayer("playerTest2");
+        HumanPlayer player2 = new HumanPlayer("playerTest2");
         player2.setRoundsWins();
 
         //When
@@ -111,13 +111,13 @@ public class RpsRunnerTestSuite {
     @Test
     void testShowWhoWinsAndAddPoint(){
         //Given
-        RpsPlayer player1 = new RpsPlayer("playerTest1");
-        RpsPlayer player2 = new RpsPlayer("playerTest2");
+        HumanPlayer player1 = new HumanPlayer("playerTest1");
+        HumanPlayer player2 = new HumanPlayer("playerTest2");
 
         //When
-        RpsPlay.showWhoWinsAndAddPoint(player1);
-        RpsPlay.showWhoWinsAndAddPoint(player2);
-        RpsPlay.showWhoWinsAndAddPoint(player2);
+        GameService.showWhoWinsAndAddPoint(player1);
+        GameService.showWhoWinsAndAddPoint(player2);
+        GameService.showWhoWinsAndAddPoint(player2);
 
         //Then
         assertEquals(1, player1.getRoundsWins());
