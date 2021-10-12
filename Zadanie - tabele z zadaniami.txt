@@ -1,0 +1,70 @@
+CREATE TABLE ISSUESLISTS
+(
+    ID SERIAL PRIMARY KEY,
+    NAME VARCHAR(50) CHARSET utf8 NOT NULL
+);
+
+CREATE TABLE ISSUES
+(
+    ID SERIAL PRIMARY KEY,
+    ISSUESLISTS_ID BIGINT UNSIGNED NOT NULL,
+    SUMMARY VARCHAR(100),
+    DESCRIPTION VARCHAR(1024),
+    USER_ID_ASSIGNEDTO BIGINT UNSIGNED NOT NULL,
+
+        FOREIGN KEY (ISSUESLISTS_ID) REFERENCES ISSUESLISTS (ID),
+        FOREIGN KEY (USER_ID_ASSIGNEDTO) REFERENCES USERS (ID)
+);
+
+INSERT INTO ISSUESLISTS (NAME) VALUES ("ToDo");
+INSERT INTO ISSUESLISTS (NAME) VALUES ("In progress");
+INSERT INTO ISSUESLISTS (NAME) VALUES ("Done");
+
+COMMIT;
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(1,"Preparation of letters", "preparing the content of letters for contractors",2);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(1,"Printing of letters", "printing letters for contractors",2);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(2,"Signing letters", "signing letters by a person authorized to represent the company",1);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(2,"Packing letters", "packing letters into envelopes and addressing envelopes",3);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(3,"Sending letters", "sending correspondence at the post office",3);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(1,"Checking a bank account", "bank account status control",4);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(2,"Issue invoices", "preparation of invoices for orders",4);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(2,"Invoice corrections", "preparing invoice corrections for unrealized orders",4);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(3,"Sending invoices", "sending invoices to contractors",4);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(3,"Checking the state of the cash register", "controling the state of revenue and expense ledger",4);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(1,"Employee presence control", "checking that all employees are at work",5);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(1,"Calculation of contributions", "calculation of social and health insurance contributions",5);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(2,"Calculation of wages", "calculating salaries for employees",5);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(3,"Payroll sending", "sending payroll to the accounting department",5);
+
+INSERT INTO ISSUES (ISSUESLISTS_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(3,"Issuing documents", "preparing documents for the tax office and insurance company",5);
+
+COMMIT;
