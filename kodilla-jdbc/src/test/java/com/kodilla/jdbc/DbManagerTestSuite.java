@@ -71,8 +71,9 @@ class DbManagerTestSuite {
         rs.close();
         statement.close();
         results.stream().forEach(System.out::println);
-        assertEquals(2, results.size());
+
         assertEquals("1. John Smith", results.get(0));
         assertEquals("2. Stephanie Kovalsky", results.get(1));
+        assertEquals(2, results.size());
     }
 }
