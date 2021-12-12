@@ -6,8 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @NamedQuery(
-        name = "Employee.getEmployessByName",
+        name = "Employee.getEmployeesByLastname",
         query = "FROM Employee WHERE lastname LIKE :LASTNAME"
+)
+
+@NamedQuery(
+        name = "Employee.getEmployeesByName",
+        query = "FROM Employee WHERE firstname LIKE: ARG OR lastname LIKE :ARG"
 )
 
 @Entity

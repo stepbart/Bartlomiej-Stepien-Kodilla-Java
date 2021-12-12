@@ -14,6 +14,9 @@ package com.kodilla.hibernate.manytomany.dao;
 public interface EmployeeDao extends CrudRepository<Employee, Integer> {
 
     @Query
-    List<Employee> getEmployessByName(@Param("LASTNAME") String lastname);
+    List<Employee> getEmployeesByLastname(@Param("LASTNAME") String lastname);
+
+    @Query
+    List<Employee> getEmployeesByName(@Param("ARG") String fragmentOfName);
 
 }

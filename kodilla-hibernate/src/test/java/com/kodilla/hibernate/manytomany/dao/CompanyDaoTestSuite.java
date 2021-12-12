@@ -96,8 +96,8 @@ class CompanyDaoTestSuite {
         int greyMatterId = greyMatter.getId();
 
         //When
-        List<Employee> smithName = employeeDao.getEmployessByName("Smith");
-        List<Employee> clarcksonName = employeeDao.getEmployessByName("Clarckson");
+        List<Employee> smithName = employeeDao.getEmployeesByLastname("Smith");
+        List<Employee> clarcksonName = employeeDao.getEmployeesByLastname("Clarckson");
         List<Company> greName = companyDao.getCompaniesByFirstLetters("Gre");
         List<Company> sofName = companyDao.getCompaniesByFirstLetters("Sof");
 
@@ -116,4 +116,5 @@ class CompanyDaoTestSuite {
             //do nothing
         }
     }
+
 }
